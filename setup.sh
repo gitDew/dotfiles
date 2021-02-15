@@ -1,4 +1,5 @@
 #!/bin/bash
+dotfilesDir=$(pwd)
 
 function linkDotfile {
   dest="${HOME}/${1}"
@@ -21,13 +22,13 @@ function linkDotfile {
   fi
 
   echo "Creating new symlink: ${dest}"
-  ln -s ~/${1} ${dest}
+  ln -s ${dotfilesDir}/${1} ${dest}
 }
 
 linkDotfile .vimrc
 linkDotfile .tmux.conf
 
-mkdir -p ~/.vim/bundle
-cd ~/.vim/bundle
+mkdir -p $dotfilesDir/.vim/bundle
+cd $dotfilesDir/.vim/bundle
 git clone git://github.com/VundleVim/Vundle.vim.git
 vim +PluginInstall +qall
