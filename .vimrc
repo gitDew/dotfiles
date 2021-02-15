@@ -16,6 +16,7 @@ Plugin 'VundleVim/Vundle.vim'
 if iCanHazVundle == 0
   echo "Installing Bundles, please ignore key map error messages"
   echo ""
+  :source $MYVIMRC
   :PluginInstall
 endif
 " END - Setting up Vundle - the vim plugin bundler
