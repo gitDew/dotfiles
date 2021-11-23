@@ -35,6 +35,8 @@ set noswapfile
 set hlsearch
 set ignorecase
 set incsearch
+set splitright
+set splitbelow
 colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 set nowrap " do not automatically wrap on load
