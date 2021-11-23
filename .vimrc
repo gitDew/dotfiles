@@ -48,6 +48,9 @@ nnoremap Q :NERDTreeToggle<cr>
 let NERDTreeMapOpenVSplit='v'
 let NERDTreeMapOpenSplit='s'
 
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
 " CTRLP specifics
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
