@@ -42,8 +42,11 @@ hi Normal guibg=NONE ctermbg=NONE
 set nowrap " do not automatically wrap on load
 set formatoptions-=t " do not automatically wrap text when typing
 highlight comment ctermfg=green
+
 " NERDTree specifics
 nnoremap Q :NERDTreeToggle<cr>
+let NERDTreeMapOpenVSplit='v'
+let NERDTreeMapOpenSplit='s'
 
 " CTRLP specifics
 let g:ctrlp_map = '<c-p>'
