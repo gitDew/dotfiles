@@ -28,6 +28,13 @@ inoremap jk <ESC>
 " Make Y behave like C and D
 nnoremap Y y$ 
 
+" Undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ( (<c-g>u
+inoremap [ [<c-g>u
+inoremap { {<c-g>u
+
 syntax on
 set number
 set tabstop=2
