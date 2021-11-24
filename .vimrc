@@ -37,6 +37,16 @@ inoremap ( (<c-g>u
 inoremap [ [<c-g>u
 inoremap { {<c-g>u
 
+" Moving text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap K :m .-2<CR>==
+nnoremap J :m .+1<CR>==
+
+" Old J and K get remapped here 
+nnoremap <leader>j J
+nnoremap <leader>k K
+
 syntax on
 set number
 set tabstop=2
