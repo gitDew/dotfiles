@@ -25,6 +25,8 @@ endif
 set shell=/bin/bash
 inoremap jk <ESC>
 
+map <Space> <Leader>
+
 " Make Y behave like C and D
 nnoremap Y y$ 
 
