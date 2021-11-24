@@ -9,7 +9,7 @@ Plugin 'preservim/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'joshdick/onedark.vim'
 call vundle#end()            
-filetype plugin indent on   
+filetype plugin indent on
 
 " Put your non-Plugin stuff after this line
 
@@ -24,6 +24,10 @@ endif
 
 set shell=/bin/bash
 inoremap jk <ESC>
+
+" Make Y behave like C and D
+nnoremap Y y$ 
+
 syntax on
 set number
 set tabstop=2
