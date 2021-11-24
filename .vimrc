@@ -80,4 +80,4 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " pytest.vim specifics
-nnoremap <leader>t <Esc>:Pytest project<CR>
+nnoremap <leader>t <Esc>:Pytest project verbose<CR>
