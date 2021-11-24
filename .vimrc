@@ -8,6 +8,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'joshdick/onedark.vim'
+Plugin 'alfredodeza/pytest.vim'
 call vundle#end()            
 filetype plugin indent on
 
@@ -78,4 +79,5 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-
+" pytest.vim specifics
+nnoremap <leader>t <Esc>:Pytest project<CR>
