@@ -48,6 +48,10 @@ nnoremap J :m .+1<CR>==
 nnoremap <leader>j J
 nnoremap <leader>k K
 
+
+"This unsets the 'last search pattern' register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
 syntax on
 set number
 set tabstop=2
