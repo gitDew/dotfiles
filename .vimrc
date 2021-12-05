@@ -84,7 +84,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 " CTRLP specifics
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'CtrlPMixed'
 
 " pytest.vim specifics
 nnoremap <leader>t <Esc>:Pytest project verbose<CR>
