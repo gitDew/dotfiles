@@ -52,6 +52,9 @@ nnoremap <leader>k K
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR>
 
+" Navigate snake_case easier
+set iskeyword-=_
+
 syntax on
 set number
 set tabstop=2
