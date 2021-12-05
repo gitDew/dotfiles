@@ -88,3 +88,4 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 
 " pytest.vim specifics
 nnoremap <leader>t <Esc>:Pytest project verbose<CR>
+nnoremap <leader>f <Esc>:Pytest file verbose<CR>
