@@ -27,8 +27,6 @@ function linkDotfile {
 
 linkDotfile .vimrc
 linkDotfile .tmux.conf
-
-mkdir -p ~/.vim/bundle
-cd ~/.vim/bundle
-git clone git://github.com/VundleVim/Vundle.vim.git
-vim +PluginInstall +qall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall +qall

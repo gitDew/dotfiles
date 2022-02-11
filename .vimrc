@@ -1,16 +1,15 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'preservim/nerdtree'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'joshdick/onedark.vim'
-Plugin 'alfredodeza/pytest.vim'
-call vundle#end()            
-filetype plugin indent on
+call plug#begin('~/.vim/plugged')
+" Plugins go here
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'preservim/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'joshdick/onedark.vim'
+Plug 'alfredodeza/pytest.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
 
 " Put your non-Plugin stuff after this line
 
