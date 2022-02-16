@@ -54,6 +54,9 @@ nnoremap <CR> :noh<CR>
 " Navigate snake_case easier
 set iskeyword-=_
 
+" highlight the visual selection after pressing enter.
+xnoremap <silent> <cr> "*y:silent! let searchTerm = '\V'.substitute(escape(@*, '\/'), "\n", '\\n', "g") <bar> let @/ = searchTerm <bar> echo '/'.@/ <bar> call histadd("search", searchTerm) <bar> set hls<cr>
+
 syntax on
 set number
 set tabstop=2
