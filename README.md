@@ -14,11 +14,18 @@ Run setup.sh:
 
 ### Windows
 
-For NeoVim:
+Start Powershell as Admin:
+
+To setup NeoVim:
 
     cd ~\AppData\Local\
     mkdir nvim
     cd nvim
     New-Item -Path init.vim -ItemType SymbolicLink -Value ~\dotfiles\.vimrc
+
+To setup IdeaVim:
+
+    cd ~
+    New-Item -Path .ideavimrc -ItemType SymbolicLink -Value ~\dotfiles\.ideavimrc
 
 Done!
