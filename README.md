@@ -5,9 +5,20 @@ Clone from GitHub:
 
     git clone https://github.com/gitDew/dotfiles.git ~/dotfiles
 
+### Linux
+
 Run setup.sh:
 
     cd ~/dotfiles
     ./setup.sh
+
+### Windows
+
+For NeoVim:
+
+    cd ~\AppData\Local\
+    mkdir nvim
+    cd nvim
+    New-Item -Path init.vim -ItemType SymbolicLink -Value ~\dotfiles\.vimrc
 
 Done!
