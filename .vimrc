@@ -9,6 +9,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
 Plug 'alfredodeza/pytest.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " Put your non-Plugin stuff after this line
@@ -36,13 +37,6 @@ map <Space> <Leader>
 
 " Make Y behave like C and D
 nnoremap Y y$ 
-
-" Undo break points
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ( (<c-g>u
-inoremap [ [<c-g>u
-inoremap { {<c-g>u
 
 " Moving text
 vnoremap J :m '>+1<CR>gv=gv
