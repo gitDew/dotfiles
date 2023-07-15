@@ -5,6 +5,7 @@ filetype off
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 
 " Put your non-Plugin stuff after this line
 
