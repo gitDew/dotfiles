@@ -92,3 +92,15 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 " pytest.vim specifics
 nnoremap <leader>t <Esc>:Pytest project verbose<CR>
 noremap <leader>f <Esc>:Pytest file verbose<CR>
+
+" markdown syntax highlighting for files without an extension
+au BufNewFile,BufRead * if &syntax == '' | set syntax=markdown | endif
+
+" highlight TODO and FIXME
+augroup myTodo
+  autocmd!
+  autocmd Syntax * syntax match myTodo /\v\_.<(TODO|FIXME).*/hs=s+1 containedin=.*Comment
+augroup END
+
+highlight link myTodo Todo
+
