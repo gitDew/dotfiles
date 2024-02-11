@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 " Plugins go here
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
@@ -88,6 +88,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " CTRLP specifics
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_open_new_file = 'r'
 
 " pytest.vim specifics
 nnoremap <leader>t <Esc>:Pytest project verbose<CR>
