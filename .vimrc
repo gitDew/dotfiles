@@ -1,16 +1,22 @@
 set nocompatible
 filetype off
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
+
 call plug#begin()
 " Plugins go here
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'joshdick/onedark.vim'
 Plug 'alfredodeza/pytest.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
+Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
 call plug#end()
+
 
 " Put your non-Plugin stuff after this line
 
@@ -71,7 +77,6 @@ set ignorecase
 set incsearch
 set splitright
 set splitbelow
-colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 set nowrap " do not automatically wrap on load
 set formatoptions-=t " do not automatically wrap text when typing
@@ -105,3 +110,4 @@ augroup END
 
 highlight link myTodo Todo
 
+colorscheme rose-pine
