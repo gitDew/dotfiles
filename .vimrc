@@ -4,6 +4,7 @@ filetype off
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin()
@@ -50,9 +51,19 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap K :m .-2<CR>==
 nnoremap J :m .+1<CR>==
 
+
+" Move to window
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+
 " Old J and K get remapped here 
-nnoremap <leader>j J
-nnoremap <leader>k K
+nnoremap <C-j> J
+nnoremap <C-k> K
+
+" Bind Ctrl-V to Space + V to avoid confusion with pasting
+nnoremap <leader>v <C-v>
 
 
 "This unsets the 'last search pattern' register by hitting return

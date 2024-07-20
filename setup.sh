@@ -1,7 +1,10 @@
 #!/bin/bash
 dotfilesDir=$(pwd)
 
-ln -s ${dotfilesDir}/.vimrc "${HOME}/.vimrc"
-mkdir -p ${HOME}/.config/nvim/ && ln -s ${dotfilesDir}/.vimrc "${HOME}/.config/nvim/init.vim"
-ln -s ${dotfilesDir}/.tmux.conf "${HOME}/.tmux.conf"
+sudo apt install curl
+sudo apt install neovim
+
+mkdir -p ~/.config/nvim/
+ln -s ${dotfilesDir}/.vimrc ~/.config/nvim/init.vim
+
 nvim +PlugInstall +qall
