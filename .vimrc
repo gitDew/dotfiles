@@ -10,6 +10,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'alfredodeza/pytest.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
+Plug 'michaeljsmith/vim-indent-object'
 call plug#end()
 
 " Put your non-Plugin stuff after this line
