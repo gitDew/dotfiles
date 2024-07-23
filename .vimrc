@@ -1,17 +1,24 @@
 set nocompatible
 filetype off
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin()
 " Plugins go here
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'joshdick/onedark.vim'
 Plug 'alfredodeza/pytest.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
 call plug#end()
+
 
 " Put your non-Plugin stuff after this line
 
@@ -45,9 +52,19 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap K :m .-2<CR>==
 nnoremap J :m .+1<CR>==
 
+
+" Move to window
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+
 " Old J and K get remapped here 
-nnoremap <leader>j J
-nnoremap <leader>k K
+nnoremap <C-j> J
+nnoremap <C-k> K
+
+" Bind Ctrl-V to Space + V to avoid confusion with pasting
+nnoremap <leader>v <C-v>
 
 
 "This unsets the 'last search pattern' register by hitting return
@@ -72,7 +89,6 @@ set ignorecase
 set incsearch
 set splitright
 set splitbelow
-colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 set nowrap " do not automatically wrap on load
 set formatoptions-=t " do not automatically wrap text when typing
@@ -106,3 +122,4 @@ augroup END
 
 highlight link myTodo Todo
 
+colorscheme rose-pine
