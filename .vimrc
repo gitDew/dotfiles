@@ -122,3 +122,8 @@ augroup END
 highlight link myTodo Todo
 
 colorscheme rose-pine
+
+" Disable spaces being added before the closing bracket
+let g:AutoPairsMapSpace = 0
+
+
