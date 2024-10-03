@@ -19,4 +19,8 @@ set noerrorbells
 " Navigate camelCase with shift motions
 map W [w
 map E ]w
-map B [b
+
+
+" Splitting tabs with leaders
+map <leader>s <Action>(MoveTabDown)
+map <leader>d <Action>(MoveTabRight)
