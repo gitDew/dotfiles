@@ -22,5 +22,6 @@ map E ]w
 
 
 " Splitting tabs with leaders
+map <leader>a <Action>(MoveEditorToOppositeTabGroup)
 map <leader>s <Action>(MoveTabDown)
 map <leader>d <Action>(MoveTabRight)
