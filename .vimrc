@@ -16,6 +16,9 @@ Plug 'alfredodeza/pytest.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
+Plug 'neovim/nvim-lspconfig',
+Plug 'nvim-treesitter/nvim-treesitter',
+Plug 'Everduin94/nvim-quick-switcher'
 call plug#end()
 
 
@@ -28,6 +31,8 @@ if (empty($TMUX))
   if (has("nvim"))
     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    " Source the lua configuration file too since we're in neovim
+    lua require('init')
   endif
   "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
@@ -45,22 +50,12 @@ map <Space> <Leader>
 " Make Y behave like C and D
 nnoremap Y y$ 
 
-" Moving text
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-nnoremap K :m .-2<CR>==
-nnoremap J :m .+1<CR>==
-
 
 " Move to window
 nnoremap <leader>h <C-w>h
 nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
 nnoremap <leader>l <C-w>l
-
-" Old J and K get remapped here 
-nnoremap <C-j> J
-nnoremap <C-k> K
 
 " Bind Ctrl-V to Space + V to avoid confusion with pasting
 nnoremap <leader>v <C-v>
@@ -106,6 +101,10 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_open_new_file = 'r'
 
+" CTRLP speedup
+let g:ctrlp_user_command = ['.git/', 'git ls-files --cached --others  --exclude-standard %s']
+
+
 " pytest.vim specifics
 nnoremap <leader>t <Esc>:Pytest project verbose<CR>
 noremap <leader>f <Esc>:Pytest file verbose<CR>
@@ -125,5 +124,3 @@ colorscheme rose-pine
 
 " Disable spaces being added before the closing bracket
 let g:AutoPairsMapSpace = 0
-
-
