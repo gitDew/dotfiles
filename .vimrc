@@ -15,6 +15,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alfredodeza/pytest.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
 Plug 'neovim/nvim-lspconfig',
 Plug 'nvim-treesitter/nvim-treesitter',
