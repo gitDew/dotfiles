@@ -16,10 +16,10 @@ Plug 'alfredodeza/pytest.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
 Plug 'neovim/nvim-lspconfig',
 Plug 'nvim-treesitter/nvim-treesitter',
-Plug 'Everduin94/nvim-quick-switcher'
+Plug 'Everduin94/nvim-quick-switcher',
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 call plug#end()
 
 
@@ -121,7 +121,7 @@ augroup END
 
 highlight link myTodo Todo
 
-colorscheme rose-pine
+colorscheme catppuccin-macchiato "catppuccin catppuccin-latte, catppuccin-frappe, catppuccin-mocha
 
 " Disable spaces being added before the closing bracket
 let g:AutoPairsMapSpace = 0
