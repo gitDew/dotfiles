@@ -1,0 +1,41 @@
+source ~/dotfiles/.vimrc
+
+"" IdeaVim Stuff
+set visualbell
+set noerrorbells
+set quickscope
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+" Navigate camelCase with shift motions
+map W [w
+map E ]w
+
+" Navigate to methods
+" Splitting tabs with leaders
+map <leader>a <Action>(MoveEditorToOppositeTabGroup)
+map <leader>s <Action>(MoveTabDown)
+map <leader>d <Action>(MoveTabRight)
+
+" Navigate to methods
+map <leader>J <Action>(MethodDown)
+map <leader>K <Action>(MethodUp)
+
+" Go to next error
+map <leader>e <Action>(GotoNextError)
+map <leader>E <Action>(GotoPreviousError)
+
+" Move to window nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
