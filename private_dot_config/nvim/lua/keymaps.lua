@@ -54,3 +54,6 @@ vim.keymap.set("v", "<leader>S", [["hy:%s/<C-r>h/<C-r>h/gI<Left><Left><left>]])
 
 -- Code actions
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
+
+-- Bind Ctrl-V to Space + V to avoid confusion with pasting
+vim.keymap.set('n', '<leader>v', '<C-v>')
