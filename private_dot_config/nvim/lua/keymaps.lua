@@ -51,9 +51,5 @@ vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- Substitute selected in whole file
 vim.keymap.set("v", "<leader>S", [["hy:%s/<C-r>h/<C-r>h/gI<Left><Left><left>]])
 
-
--- Code actions
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
-
 -- Bind Ctrl-V to Space + V to avoid confusion with pasting
 vim.keymap.set('n', '<leader>v', '<C-v>')
