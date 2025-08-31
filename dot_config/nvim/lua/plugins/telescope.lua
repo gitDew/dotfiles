@@ -83,6 +83,18 @@ return {
               height = 0.9,
             },
           },
+          lsp_definitions = {
+            initial_mode = "normal",
+          },
+          lsp_references = {
+            initial_mode = "normal",
+          },
+          lsp_implementations = {
+            initial_mode = "normal",
+          },
+          lsp_type_definitions = {
+            initial_mode = "normal",
+          },
         },
         extensions = {
           ['ui-select'] = {
@@ -109,6 +121,11 @@ return {
       vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = '[F]ind [Old] Files' })
       vim.keymap.set('n', '<leader><leader>', builtin.resume, { desc = '[ ] Resume last search' })
       vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
+
+      vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = "Go to definition" })
+      vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = "Find references" })
+      vim.keymap.set('n', 'gi', builtin.lsp_implementations, { desc = "Go to implementation" })
+      vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, { desc = "Go to type definition" })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>fn', function()

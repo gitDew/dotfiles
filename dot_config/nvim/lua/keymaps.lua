@@ -61,16 +61,6 @@ vim.keymap.set('n', '<leader>m', '<cmd>make<cr>')
 ------ LSP keymaps
 local opts = { noremap=true, silent=true }
 
--- Go to definition
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)        
-vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)        
-
--- Find references
-vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)        
-
--- Go to implementation
-vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)    
-
 -- Rename symbol
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)            
 
@@ -79,9 +69,3 @@ vim.keymap.set({'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
 
 -- Hover documentation
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)                      
-
--- Navigate to the next diagnostic (error)
-vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts)
-
--- Navigate to the previous diagnostic (error)
-vim.keymap.set('n', '<leader>dN', vim.diagnostic.goto_prev, opts)
