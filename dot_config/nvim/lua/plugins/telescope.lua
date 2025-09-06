@@ -64,12 +64,14 @@ return {
               ["<esc>"] = actions.close,
               ["qq"] = actions.close,
               ["<C-s>"] = actions.select_horizontal,
-              ["<C-d>"] = actions.select_vertical
+              ["<C-d>"] = actions.select_vertical,
+              ["<C-t>"] = actions.select_tab
             },
             n = {
               ["q"] = actions.close,
               ["<C-s>"] = actions.select_horizontal,
-              ["<C-d>"] = actions.select_vertical
+              ["<C-d>"] = actions.select_vertical,
+              ["<C-t>"] = actions.select_tab
             },
           },
         },
@@ -125,7 +127,7 @@ return {
       vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = "Go to definition" })
       vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = "Find references" })
       vim.keymap.set('n', 'gi', builtin.lsp_implementations, { desc = "Go to implementation" })
-      vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, { desc = "Go to type definition" })
+      -- vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, { desc = "Go to type definition" })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>fn', function()
