@@ -13,6 +13,17 @@ return {
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+        require'lspconfig'.openscad_lsp.setup{
+            on_attach = function(client, bufnr)
+                -- format on save (only for this buffer)
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = bufnr,
+                    callback = function()
+                        vim.lsp.buf.format({ async = false })
+                    end,
+                })
+            end,
+        }
         require'lspconfig'.basedpyright.setup{}
         require'lspconfig'.clangd.setup{}
         require'lspconfig'.ts_ls.setup{}
