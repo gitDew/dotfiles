@@ -13,3 +13,4 @@ require("lazy").setup("plugins")
 
 vim.cmd.colorscheme "catppuccin-macchiato"
 vim.cmd("language en_US.UTF-8")
+vim.cmd("syntax off")

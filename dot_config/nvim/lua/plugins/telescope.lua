@@ -79,7 +79,7 @@ return {
           diagnostics = {
             initial_mode = "normal",
             theme = "ivy",
-            layout_strategy = "vertical",
+            layout_strategy = "horizontal",
             layout_config = {
               width = 0.95,
               height = 0.9,
@@ -114,6 +114,7 @@ return {
       -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
+      -- vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<leader>fp', builtin.git_files, { desc = '[F]ind in [P]project (git repo)' })
       -- vim.keymap.set('n', '<leader>fp', "<cmd>Telescope projects<cr>", { desc = '[F]ind in [P]project (git repo)' })
       vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
@@ -121,7 +122,7 @@ return {
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
       vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
       vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = '[F]ind [Old] Files' })
-      vim.keymap.set('n', '<leader><leader>', builtin.resume, { desc = '[ ] Resume last search' })
+      -- vim.keymap.set('n', '<leader><leader>', builtin.resume, { desc = '[ ] Resume last search' })
       vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
 
       vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = "Go to definition" })
@@ -133,7 +134,6 @@ return {
       vim.keymap.set('n', '<leader>fn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[F]ind [N]eovim files' })
-
 
       vim.keymap.set('n', '<leader>fh', function()
         builtin.find_files { cwd = '/home/krisz/', hidden = true}

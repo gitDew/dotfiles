@@ -10,7 +10,15 @@ return {
                 -- secret = os.getenv("env_name.."),
                 openai = {},
                 azure = {},
-                copilot = {},
+                copilot = {
+                    disable = false,
+                    endpoint = "https://api.githubcopilot.com/chat/completions",
+                    secret = {
+                        "bash",
+                        "-c",
+                        "cat ~/.config/github-copilot/apps.json | sed -e 's/.*oauth_token...//;s/\".*//'",
+                    },
+                },
                 ollama = {},
                 lmstudio = {},
                 googleai = {
@@ -19,7 +27,10 @@ return {
                     secret = os.getenv("GOOGLEAI_API_KEY"),
                 },
                 pplx = {},
-                anthropic = {},
+                anthropic = {
+                    endpoint = "https://lab-coding.services.ai.azure.com/anthropic/v1/messages",
+                    secret = os.getenv("ANTHROPIC_API_KEY"),
+                },
             },
             agents = {
                 {
@@ -57,13 +68,47 @@ return {
                 },
                 {
                     provider = "copilot",
-                    name = "ChatCopilot",
+                    name = "ChatCopilotGPT-4o",
                     chat = true,
                     command = false,
                     -- string with model name or table with model name and parameters
                     model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
                     -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").chat_system_prompt,
+                    -- system_prompt = require("gp.defaults").chat_system_prompt,
+                    system_prompt = "Keep your answers concise and to the point."
+                },
+                {
+                    provider = "copilot",
+                    name = "ChatCopilotGPT-4.1",
+                    chat = true,
+                    command = false,
+                    -- string with model name or table with model name and parameters
+                    model = { model = "gpt-4.1", temperature = 1.1, top_p = 1 },
+                    -- system prompt (use this to specify the persona/role of the AI)
+                    -- system_prompt = require("gp.defaults").chat_system_prompt,
+                    system_prompt = "Keep your answers concise and to the point."
+                },
+                {
+                    provider = "copilot",
+                    name = "CodeCopilotGPT-4.1",
+                    chat = false,
+                    command = true,
+                    -- string with model name or table with model name and parameters
+                    model = { model = "gpt-4.1", temperature = 1.1, top_p = 1 },
+                    -- system prompt (use this to specify the persona/role of the AI)
+                    -- system_prompt = require("gp.defaults").chat_system_prompt,
+                    system_prompt = require("gp.defaults").code_system_prompt,
+                },
+                {
+                    provider = "copilot",
+                    name = "ChatCopilotGPT-5",
+                    chat = true,
+                    command = false,
+                    -- string with model name or table with model name and parameters
+                    model = { model = "gpt-5", temperature = 1.1, top_p = 1 },
+                    -- system prompt (use this to specify the persona/role of the AI)
+                    -- system_prompt = require("gp.defaults").chat_system_prompt,
+                    system_prompt = "Keep your answers concise and to the point."
                 },
                 {
                     provider = "googleai",
@@ -74,7 +119,7 @@ return {
                     model = { model = "gemini-2.5-flash", temperature = 1.1, top_p = 1 },
                     -- system prompt (use this to specify the persona/role of the AI)
                     -- system_prompt = require("gp.defaults").chat_system_prompt,
-                    system_prompt = "You are a general AI assistant. Keep your answers concise and to the point."
+                    system_prompt = "Keep your answers concise and to the point."
                 },
                 {
                     provider = "pplx",
@@ -115,6 +160,16 @@ return {
                     model = { model = "claude-3-5-haiku-latest", temperature = 0.8, top_p = 1 },
                     -- system prompt (use this to specify the persona/role of the AI)
                     system_prompt = require("gp.defaults").chat_system_prompt,
+                },
+                {
+                    provider = "anthropic",
+                    name = "ChatClaude-Opus-4-5",
+                    chat = true,
+                    command = false,
+                    -- string with model name or table with model name and parameters
+                    model = { model = "claude-opus-4-5"},
+                    -- system prompt (use this to specify the persona/role of the AI)
+                    system_prompt = "Keep your answers concise and to the point.",
                 },
                 {
                     provider = "ollama",
@@ -182,7 +237,7 @@ return {
                     chat = false,
                     command = true,
                     -- string with model name or table with model name and parameters
-                    model = { model = "gpt-4o", temperature = 0.8, top_p = 1, n = 1 },
+                    model = { model = "gpt-5", temperature = 0.8, top_p = 1, n = 1 },
                     -- system prompt (use this to specify the persona/role of the AI)
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
@@ -192,7 +247,7 @@ return {
                     chat = false,
                     command = true,
                     -- string with model name or table with model name and parameters
-                    model = { model = "gemini-pro", temperature = 0.8, top_p = 1 },
+                    model = { model = "gemini-pro-3", temperature = 0.8, top_p = 1 },
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
                 {
@@ -211,6 +266,15 @@ return {
                     command = true,
                     -- string with model name or table with model name and parameters
                     model = { model = "claude-3-7-sonnet-latest", temperature = 0.8, top_p = 1 },
+                    system_prompt = require("gp.defaults").code_system_prompt,
+                },
+                {
+                    provider = "anthropic",
+                    name = "CodeClaude-Opus-4-5",
+                    chat = false,
+                    command = true,
+                    -- string with model name or table with model name and parameters
+                    model = { model = "claude-opus-4-5"},
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
                 {
@@ -238,9 +302,10 @@ return {
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
             },
+            chat_shortcut_respond = { modes = { "n" }, shortcut = "<CR>" },
             chat_free_cursor = true,
             chat_confirm_delete = false,
-
+            chat_template = require("gp.defaults").short_chat_template,
         }
         require("gp").setup(conf)
         local function keymapOptions(desc)
@@ -254,12 +319,12 @@ return {
 
         -- Chat commands
         -- vim.keymap.set({"n", "i"}, "<C-g>c", "<cmd>GpChatNew<cr>", keymapOptions("New Chat"))
-        vim.keymap.set('n', "<leader>a", "<cmd>GpChatToggle tabnew<cr>", keymapOptions("Toggle Chat"))
-        vim.keymap.set('v', "<leader>a", ":<C-u>'<,'>GpChatToggle tabnew<cr>", keymapOptions("Visual Toggle Chat"))
+        vim.keymap.set('n', "<leader>a", "<cmd>GpChatToggle vsplit<cr>", keymapOptions("Toggle Chat"))
+        -- vim.keymap.set('v', "<leader>a", ":<C-u>'<,'>GpChatToggle tabnew<cr>", keymapOptions("Visual Toggle Chat"))
         vim.keymap.set('n', "<leader>fa", "<cmd>GpChatFinder<cr>", keymapOptions("Chat Finder"))
 
         -- vim.keymap.set("v", "<C-g>c", ":<C-u>'<,'>GpChatNew<cr>", keymapOptions("Visual Chat New"))
-        -- vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpChatPaste<cr>", keymapOptions("Visual Chat Paste"))
+        vim.keymap.set("v", "<leader>a", ":<C-u>'<,'>GpChatPaste vsplit<cr>", keymapOptions("Visual Chat Paste"))
 
         -- vim.keymap.set({ "n", "i" }, "<C-g><C-x>", "<cmd>GpChatNew split<cr>", keymapOptions("New Chat split"))
         -- vim.keymap.set({ "n", "i" }, "<C-g><C-v>", "<cmd>GpChatNew vsplit<cr>", keymapOptions("New Chat vsplit"))
@@ -270,14 +335,14 @@ return {
         -- vim.keymap.set("v", "<C-g><C-t>", ":<C-u>'<,'>GpChatNew tabnew<cr>", keymapOptions("Visual Chat New tabnew"))
 
         -- -- Prompt commands
-        -- vim.keymap.set({"n", "i"}, "<C-g>r", "<cmd>GpRewrite<cr>", keymapOptions("Inline Rewrite"))
+        vim.keymap.set("v", "<leader>rt", "<cmd>GpRewrite<cr>", keymapOptions("Inline [R]ewrite [t]his"))
+        vim.keymap.set("v", "<leader>it", ":<C-u>'<,'>GpImplement<cr>", keymapOptions("[I]mplement [t]his selection"))
         -- vim.keymap.set({"n", "i"}, "<C-g>a", "<cmd>GpAppend<cr>", keymapOptions("Append (after)"))
         -- vim.keymap.set({"n", "i"}, "<C-g>b", "<cmd>GpPrepend<cr>", keymapOptions("Prepend (before)"))
 
         -- vim.keymap.set("v", "<C-g>r", ":<C-u>'<,'>GpRewrite<cr>", keymapOptions("Visual Rewrite"))
         -- vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<cr>", keymapOptions("Visual Append (after)"))
         -- vim.keymap.set("v", "<C-g>b", ":<C-u>'<,'>GpPrepend<cr>", keymapOptions("Visual Prepend (before)"))
-        -- vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<cr>", keymapOptions("Implement selection"))
 
         -- vim.keymap.set({"n", "i"}, "<C-g>gp", "<cmd>GpPopup<cr>", keymapOptions("Popup"))
         -- vim.keymap.set({"n", "i"}, "<C-g>ge", "<cmd>GpEnew<cr>", keymapOptions("GpEnew"))
@@ -297,5 +362,7 @@ return {
         -- vim.keymap.set({"n", "i", "v", "x"}, "<C-g>s", "<cmd>GpStop<cr>", keymapOptions("Stop"))
         -- vim.keymap.set({"n", "i", "v", "x"}, "<C-g>n", "<cmd>GpNextAgent<cr>", keymapOptions("Next Agent"))
         -- vim.keymap.set({"n", "i", "v", "x"}, "<C-g>l", "<cmd>GpSelectAgent<cr>", keymapOptions("Select Agent"))
+    --
+        -- vim.keymap.set("n", "<CR>", "<cmd>GpChatRespond<CR>", { noremap = true })
     end,
 }

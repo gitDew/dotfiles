@@ -36,9 +36,9 @@ vim.opt.inccommand = 'split'
 vim.opt.scrolloff = 10
 
 -- Tabs
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 -- Colors
@@ -46,5 +46,18 @@ vim.opt.termguicolors = true
 
 -- Highlight current line
 vim.opt.cursorline = true
+
+vim.g.markdown_fenced_languages = {
+  'html',
+  'python',
+  'java',
+  'lua',
+  'vim',
+  'typescript',
+  'javascript'
+}
+
+-- Use system clipboard
+vim.opt.clipboard = "unnamedplus"
 
 -- vim: ts=2 sts=2 sw=2 et

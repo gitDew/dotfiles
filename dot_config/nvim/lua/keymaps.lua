@@ -11,6 +11,9 @@ vim.keymap.set('n', '<leader>l', '<C-w><C-l>', { desc = 'Move focus to the right
 vim.keymap.set('n', '<leader>j', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<leader>k', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Toggle to previous window with <leader><leader>
+vim.keymap.set('n', '<leader><leader>', '<C-w><C-p>', { desc = 'Toggle to previous window' })
+
 -- Scroll and center
 vim.keymap.set('n', '<C-u>', '<C-u>zz',{ desc = 'Scroll up' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz',{ desc = 'Scroll down' })
@@ -69,3 +72,6 @@ vim.keymap.set({'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
 
 -- Hover documentation
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)                      
+
+-- Show diagnostics in a floating window
+vim.keymap.set('n', 'E', vim.diagnostic.open_float, { noremap = true, silent = true })

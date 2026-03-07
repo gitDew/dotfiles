@@ -13,8 +13,10 @@ return {
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-        require'lspconfig'.pyright.setup{}
+        require'lspconfig'.basedpyright.setup{}
         require'lspconfig'.clangd.setup{}
+        require'lspconfig'.ts_ls.setup{}
+        require'lspconfig'.bashls.setup{}
         require'lspconfig'.gopls.setup{
             on_attach = function(client, bufnr)
                 -- format on save (only for this buffer)
@@ -26,6 +28,5 @@ return {
                 })
             end,
         }
-
     end,
 }
