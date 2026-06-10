@@ -97,6 +97,9 @@ return {
           lsp_type_definitions = {
             initial_mode = "normal",
           },
+          git_status = {
+            initial_mode = "normal",
+          },
         },
         extensions = {
           ['ui-select'] = {
@@ -116,6 +119,19 @@ return {
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
       -- vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<leader>fp', builtin.git_files, { desc = '[F]ind in [P]project (git repo)' })
+
+
+--    vim.keymap.set('n', '<leader>fm', builtin.git_status, { desc = '[F]ind [M]odified (Git Status) Files' })
+      -- make colors work in telescope diff preview
+      vim.keymap.set('n', '<leader>fm', function()
+        require('telescope.builtin').git_status({
+          previewer = require('telescope.previewers').new_termopen_previewer({
+            get_command = function(entry)
+              return { 'git', '-c', 'color.diff=always', 'diff', '--', entry.value }
+            end,
+          }),
+        })
+      end, { desc = '[F]ind [M]odified (Git Status) Files' })
       -- vim.keymap.set('n', '<leader>fp', "<cmd>Telescope projects<cr>", { desc = '[F]ind in [P]project (git repo)' })
       vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
@@ -138,7 +154,36 @@ return {
       vim.keymap.set('n', '<leader>fh', function()
         builtin.find_files { cwd = '/home/krisz/', hidden = true}
       end, { desc = '[F]ind in [H]ome' })
+
+      vim.keymap.set('n', '<leader>dc', function()
+        require('telescope.builtin').find_files({
+          prompt_title = 'File 1',
+          attach_mappings = function(_, map)
+            map('i', '<CR>', function(prompt_bufnr)
+              local file1 = require('telescope.actions.state').get_selected_entry().path
+              require('telescope.actions').close(prompt_bufnr)
+              
+              require('telescope.builtin').find_files({
+                prompt_title = 'File 2',
+                attach_mappings = function(_, map2)
+                  map2('i', '<CR>', function(prompt_bufnr2)
+                    local file2 = require('telescope.actions.state').get_selected_entry().path
+                    require('telescope.actions').close(prompt_bufnr2)
+                    
+                    vim.cmd('tabnew ' .. file1)
+                    vim.cmd('vert diffsplit ' .. file2)
+                  end)
+                  return true
+                end,
+              })
+            end)
+            return true
+          end,
+        })
+      end)
+
     end,
+
 
   },
 }

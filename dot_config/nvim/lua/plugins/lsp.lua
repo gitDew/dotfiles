@@ -24,6 +24,7 @@ return {
                 })
             end,
         }
+        require'lspconfig'.dartls.setup{}
         require'lspconfig'.basedpyright.setup{}
         require'lspconfig'.clangd.setup{}
         require'lspconfig'.ts_ls.setup{}
