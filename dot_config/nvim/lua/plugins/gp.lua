@@ -31,13 +31,16 @@ return {
                     endpoint = "https://lab-coding.services.ai.azure.com/anthropic/v1/messages",
                     secret = os.getenv("ANTHROPIC_API_KEY"),
                 },
-
                 opencodego = {
                     disable = false,
                     endpoint = "https://opencode.ai/zen/go/v1/chat/completions",
                     secret = os.getenv("OPENCODE_GO_API_KEY"),
                 },
-
+                labcoding = {
+                    disable = false,
+                    endpoint = "https://lab-coding.openai.azure.com/openai/v1/chat/completions",
+                    secret = os.getenv("LAB_CODING_API_KEY"),
+                },
             },
             agents = {
                 {
@@ -170,11 +173,24 @@ return {
                 },
                 {
                     provider = "anthropic",
-                    name = "ChatClaude-Opus-4-5",
+                    name = "ChatClaude-Opus-4-8",
                     chat = true,
                     command = false,
                     -- string with model name or table with model name and parameters
-                    model = { model = "claude-opus-4-5"},
+                    model = { model = "claude-opus-4-8"},
+                    -- system prompt (use this to specify the persona/role of the AI)
+                    system_prompt = "Keep your answers concise and to the point.",
+                },
+                {
+                    provider = "labcoding",
+                    name = "ChatDeepSeek-V4-Pro",
+                    chat = true,
+                    command = false,
+                    -- string with model name or table with model name and parameters
+                    model = {
+                        model = "DeepSeek-V4-Pro",
+                        reasoning_effort = "max",
+                    },
                     -- system prompt (use this to specify the persona/role of the AI)
                     system_prompt = "Keep your answers concise and to the point.",
                 },
@@ -277,11 +293,11 @@ return {
                 },
                 {
                     provider = "anthropic",
-                    name = "CodeClaude-Opus-4-5",
+                    name = "CodeClaude-Opus-4-8",
                     chat = false,
                     command = true,
                     -- string with model name or table with model name and parameters
-                    model = { model = "claude-opus-4-5"},
+                    model = { model = "claude-opus-4-8"},
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
                 {
@@ -291,6 +307,18 @@ return {
                     command = true,
                     -- string with model name or table with model name and parameters
                     model = { model = "claude-3-5-haiku-latest", temperature = 0.8, top_p = 1 },
+                    system_prompt = require("gp.defaults").code_system_prompt,
+                },
+                {
+                    provider = "labcoding",
+                    name = "CodeDeepSeek-V4-Pro",
+                    chat = false,
+                    command = true,
+                    -- string with model name or table with model name and parameters
+                    model = {
+                        model = "DeepSeek-V4-Pro",
+                        reasoning_effort = "max",
+                    },
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
                 {
@@ -392,7 +420,8 @@ return {
         -- vim.keymap.set("v", "<C-g><C-t>", ":<C-u>'<,'>GpChatNew tabnew<cr>", keymapOptions("Visual Chat New tabnew"))
 
         -- -- Prompt commands
-        vim.keymap.set("v", "<leader>rt", "<cmd>GpRewrite<cr>", keymapOptions("Inline [R]ewrite [t]his"))
+        -- vim.keymap.set("v", "<leader>rt", "<cmd>GpRewrite<cr>", keymapOptions("Inline [R]ewrite [t]his"))
+        vim.keymap.set("v", "<leader>rt", ":<C-u>'<,'>GpRewrite<cr>", keymapOptions("Visual [R]ewrite [t]his"))
         vim.keymap.set("v", "<leader>it", ":<C-u>'<,'>GpImplement<cr>", keymapOptions("[I]mplement [t]his selection"))
         -- vim.keymap.set({"n", "i"}, "<C-g>a", "<cmd>GpAppend<cr>", keymapOptions("Append (after)"))
         -- vim.keymap.set({"n", "i"}, "<C-g>b", "<cmd>GpPrepend<cr>", keymapOptions("Prepend (before)"))
