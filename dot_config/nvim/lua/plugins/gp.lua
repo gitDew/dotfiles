@@ -10,24 +10,11 @@ return {
                 -- secret = os.getenv("env_name.."),
                 openai = {},
                 azure = {},
-                copilot = {
-                    disable = false,
-                    endpoint = "https://api.githubcopilot.com/chat/completions",
-                    secret = {
-                        "bash",
-                        "-c",
-                        "cat ~/.config/github-copilot/apps.json | sed -e 's/.*oauth_token...//;s/\".*//'",
-                    },
-                },
                 ollama = {},
                 lmstudio = {},
-                googleai = {
-                    disable = false,
-                    endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
-                    secret = os.getenv("GOOGLEAI_API_KEY"),
-                },
                 pplx = {},
                 anthropic = {
+                    disable = true,
                     endpoint = "https://lab-coding.services.ai.azure.com/anthropic/v1/messages",
                     secret = os.getenv("ANTHROPIC_API_KEY"),
                 },
@@ -37,140 +24,12 @@ return {
                     secret = os.getenv("OPENCODE_GO_API_KEY"),
                 },
                 labcoding = {
-                    disable = false,
+                    disable = true,
                     endpoint = "https://lab-coding.openai.azure.com/openai/v1/chat/completions",
                     secret = os.getenv("LAB_CODING_API_KEY"),
                 },
             },
             agents = {
-                {
-                    name = "ExampleDisabledAgent",
-                    disable = true,
-                },
-                {
-                    name = "ChatGPT4o",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").chat_system_prompt,
-                },
-                {
-                    provider = "openai",
-                    name = "ChatGPT4o-mini",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").chat_system_prompt,
-                },
-                {
-                    provider = "openai",
-                    name = "ChatGPT-o3-mini",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "o3-mini", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").chat_system_prompt,
-                },
-                {
-                    provider = "copilot",
-                    name = "ChatCopilotGPT-4o",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    -- system_prompt = require("gp.defaults").chat_system_prompt,
-                    system_prompt = "Keep your answers concise and to the point."
-                },
-                {
-                    provider = "copilot",
-                    name = "ChatCopilotGPT-4.1",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-4.1", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    -- system_prompt = require("gp.defaults").chat_system_prompt,
-                    system_prompt = "Keep your answers concise and to the point."
-                },
-                {
-                    provider = "copilot",
-                    name = "CodeCopilotGPT-4.1",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-4.1", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    -- system_prompt = require("gp.defaults").chat_system_prompt,
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-                {
-                    provider = "copilot",
-                    name = "ChatCopilotGPT-5",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-5", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    -- system_prompt = require("gp.defaults").chat_system_prompt,
-                    system_prompt = "Keep your answers concise and to the point."
-                },
-                {
-                    provider = "googleai",
-                    name = "ChatGemini",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gemini-2.5-flash", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    -- system_prompt = require("gp.defaults").chat_system_prompt,
-                    system_prompt = "Keep your answers concise and to the point."
-                },
-                {
-                    provider = "pplx",
-                    name = "ChatPerplexityLlama3.1-8B",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "llama-3.1-sonar-small-128k-chat", temperature = 1.1, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").chat_system_prompt,
-                },
-                {
-                    provider = "anthropic",
-                    name = "ChatClaude-3-7-Sonnet",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "claude-3-7-sonnet-latest", temperature = 0.8, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").chat_system_prompt,
-                },
-                {
-                    provider = "anthropic",
-                    name = "ChatClaude-Sonnet-4-Thinking",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "claude-sonnet-4-20250514", thinking_budget = 1024 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").chat_system_prompt,
-                },
-                {
-                    provider = "anthropic",
-                    name = "ChatClaude-3-5-Haiku",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "claude-3-5-haiku-latest", temperature = 0.8, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").chat_system_prompt,
-                },
                 {
                     provider = "anthropic",
                     name = "ChatClaude-Opus-4-8",
@@ -195,118 +54,12 @@ return {
                     system_prompt = "Keep your answers concise and to the point.",
                 },
                 {
-                    provider = "ollama",
-                    name = "ChatOllamaLlama3.1-8B",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = {
-                        model = "llama3.1",
-                        temperature = 0.6,
-                        top_p = 1,
-                        min_p = 0.05,
-                    },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = "You are a general AI assistant.",
-                },
-                {
-                    provider = "lmstudio",
-                    name = "ChatLMStudio",
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = {
-                        model = "dummy",
-                        temperature = 0.97,
-                        top_p = 1,
-                        num_ctx = 8192,
-                    },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = "You are a general AI assistant.",
-                },
-                {
-                    provider = "openai",
-                    name = "CodeGPT4o",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-4o", temperature = 0.8, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-                {
-                    provider = "openai",
-                    name = "CodeGPT-o3-mini",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "o3-mini", temperature = 0.8, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-                {
-                    provider = "openai",
-                    name = "CodeGPT4o-mini",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-4o-mini", temperature = 0.7, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = "Please return ONLY code snippets.\nSTART AND END YOUR ANSWER WITH:\n\n```",
-                },
-                {
-                    provider = "copilot",
-                    name = "CodeCopilot",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gpt-5", temperature = 0.8, top_p = 1, n = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-                {
-                    provider = "googleai",
-                    name = "CodeGemini",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "gemini-pro-3", temperature = 0.8, top_p = 1 },
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-                {
-                    provider = "pplx",
-                    name = "CodePerplexityLlama3.1-8B",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "llama-3.1-sonar-small-128k-chat", temperature = 0.8, top_p = 1 },
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-                {
-                    provider = "anthropic",
-                    name = "CodeClaude-3-7-Sonnet",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "claude-3-7-sonnet-latest", temperature = 0.8, top_p = 1 },
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-                {
                     provider = "anthropic",
                     name = "CodeClaude-Opus-4-8",
                     chat = false,
                     command = true,
                     -- string with model name or table with model name and parameters
                     model = { model = "claude-opus-4-8"},
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-                {
-                    provider = "anthropic",
-                    name = "CodeClaude-3-5-Haiku",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = "claude-3-5-haiku-latest", temperature = 0.8, top_p = 1 },
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
                 {
@@ -321,22 +74,6 @@ return {
                     },
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
-                {
-                    provider = "ollama",
-                    name = "CodeOllamaLlama3.1-8B",
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = {
-                        model = "llama3.1",
-                        temperature = 0.4,
-                        top_p = 1,
-                        min_p = 0.05,
-                    },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = require("gp.defaults").code_system_prompt,
-                },
-
                 {
                     provider = "opencodego",
                     name = "ChatKimiK2.6",
