@@ -78,3 +78,16 @@ vim.keymap.set('n', 'E', vim.diagnostic.open_float, { noremap = true, silent = t
 
 -- Code formatting
 vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format { async = true } end, opts)
+
+-- Tmux: open in file's directory
+vim.keymap.set('n', '<leader>tt', function()
+  vim.cmd('silent !tmux new-window -c ' .. vim.fn.shellescape(vim.fn.expand('%:p:h')))
+end, { desc = 'Tmux new window in file dir' })
+
+vim.keymap.set('n', '<leader>ts', function()
+  vim.cmd('silent !tmux split-window -c ' .. vim.fn.shellescape(vim.fn.expand('%:p:h')))
+end, { desc = 'Tmux horizontal split in file dir' })
+
+vim.keymap.set('n', '<leader>td', function()
+  vim.cmd('silent !tmux split-window -h -c ' .. vim.fn.shellescape(vim.fn.expand('%:p:h')))
+end, { desc = 'Tmux vertical split in file dir' })
