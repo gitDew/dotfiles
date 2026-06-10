@@ -75,3 +75,6 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 
 -- Show diagnostics in a floating window
 vim.keymap.set('n', 'E', vim.diagnostic.open_float, { noremap = true, silent = true })
+
+-- Code formatting
+vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format { async = true } end, opts)

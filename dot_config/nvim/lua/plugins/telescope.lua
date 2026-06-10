@@ -58,6 +58,10 @@ return {
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
+
+          -- for godot uid files
+          file_ignore_patterns = { "%.uid$" },
+
           path_display = { "smart" },
           mappings = {
             i = {

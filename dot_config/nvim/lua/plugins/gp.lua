@@ -31,6 +31,13 @@ return {
                     endpoint = "https://lab-coding.services.ai.azure.com/anthropic/v1/messages",
                     secret = os.getenv("ANTHROPIC_API_KEY"),
                 },
+
+                opencodego = {
+                    disable = false,
+                    endpoint = "https://opencode.ai/zen/go/v1/chat/completions",
+                    secret = os.getenv("OPENCODE_GO_API_KEY"),
+                },
+
             },
             agents = {
                 {
@@ -301,6 +308,56 @@ return {
                     -- system prompt (use this to specify the persona/role of the AI)
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
+
+                {
+                    provider = "opencodego",
+                    name = "ChatKimiK2.6",
+                    chat = true,
+                    command = false,
+                    model = { model = "kimi-k2.6", temperature = 1.1, top_p = 1 },
+                    system_prompt = "Keep your answers concise and to the point."
+                },
+                {
+                    provider = "opencodego",
+                    name = "CodeKimiK2.6",
+                    chat = false,
+                    command = true,
+                    model = { model = "kimi-k2.6", temperature = 0.8, top_p = 1 },
+                    system_prompt = require("gp.defaults").code_system_prompt,
+                },
+                {
+                    provider = "opencodego",
+                    name = "ChatDeepSeekV4Pro",
+                    chat = true,
+                    command = false,
+                    model = { model = "deepseek-v4-pro", temperature = 1.1, top_p = 1, reasoning_effort = "max" },
+                    system_prompt = "Keep your answers concise and to the point."
+                },
+                {
+                    provider = "opencodego",
+                    name = "CodeDeepSeekV4Pro",
+                    chat = false,
+                    command = true,
+                    model = { model = "deepseek-v4-pro", temperature = 0.8, top_p = 1, reasoning_effort = "max" },
+                    system_prompt = require("gp.defaults").code_system_prompt,
+                },
+                {
+                    provider = "opencodego",
+                    name = "ChatDeepSeekV4Flash",
+                    chat = true,
+                    command = false,
+                    model = { model = "deepseek-v4-flash", temperature = 1.1, top_p = 1 },
+                    system_prompt = "Keep your answers concise and to the point."
+                },
+                {
+                    provider = "opencodego",
+                    name = "CodeDeepSeekV4Flash",
+                    chat = false,
+                    command = true,
+                    model = { model = "deepseek-v4-flash", temperature = 0.8, top_p = 1 },
+                    system_prompt = require("gp.defaults").code_system_prompt,
+                },
+
             },
             chat_shortcut_respond = { modes = { "n" }, shortcut = "<CR>" },
             chat_free_cursor = true,
