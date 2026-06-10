@@ -1,6 +1,12 @@
 return {
     "robitx/gp.nvim",
     config = function()
+        local function env_bool(var, default)
+            local val = os.getenv(var)
+            if val == nil then return default end
+            return val ~= ""
+        end
+
         local conf = {
             providers = {
                 -- secrets can be strings or tables with command and arguments
@@ -14,17 +20,17 @@ return {
                 lmstudio = {},
                 pplx = {},
                 anthropic = {
-                    disable = true,
+                    disable = not env_bool("ANTHROPIC_API_KEY", false),
                     endpoint = "https://lab-coding.services.ai.azure.com/anthropic/v1/messages",
                     secret = os.getenv("ANTHROPIC_API_KEY"),
                 },
                 opencodego = {
-                    disable = false,
+                    disable = not env_bool("OPENCODE_GO_API_KEY", false),
                     endpoint = "https://opencode.ai/zen/go/v1/chat/completions",
                     secret = os.getenv("OPENCODE_GO_API_KEY"),
                 },
                 labcoding = {
-                    disable = true,
+                    disable = not env_bool("LAB_CODING_API_KEY", false),
                     endpoint = "https://lab-coding.openai.azure.com/openai/v1/chat/completions",
                     secret = os.getenv("LAB_CODING_API_KEY"),
                 },
