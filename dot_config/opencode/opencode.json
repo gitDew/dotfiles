@@ -1,0 +1,89 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "provider": {
+    "azure-anthropic": {
+      "name": "Azure AI Foundry (Anthropic)",
+      "npm": "@ai-sdk/anthropic",
+      "options": {
+        "apiKey": "{env:ANTHROPIC_API_KEY}"
+      },
+      "api": "https://lab-coding.services.ai.azure.com/anthropic/v1",
+      "models": {
+        "claude-opus-4-8": {
+          "id": "claude-opus-4-8",
+          "name": "Claude Opus 4.8",
+          "tool_call": true,
+          "attachment": true,
+          "reasoning": true,
+          "temperature": true
+        },
+      }
+    },
+    "Azure AI Foundry (OpenAI)": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Azure AI Foundry (OpenAI)",
+      "options": {
+        "baseURL": "https://lab-coding.services.ai.azure.com/openai/v1",
+        "apiKey": "{env:LAB_CODING_API_KEY}",
+        "useCompletionUrls": true
+      },
+      "models": {
+        "Kimi-K2.6": {
+          "id": "Kimi-K2.6",
+          "name": "Kimi-K2.6",
+          "tool_call": true,
+          "reasoning": true,
+          "temperature": true
+        },
+        "DeepSeek-V4-Pro": {
+          "id": "DeepSeek-V4-Pro",
+          "name": "DeepSeek-V4-Pro",
+          "tool_call": true,
+          "reasoning": true,
+          "temperature": true
+        }
+      }
+    }
+  },
+  "permission": {
+    "*": "ask",
+
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+
+    "edit": "allow",
+
+    "bash": {
+      "*": "ask",
+      "git status *": "allow",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "git branch *": "allow",
+      "git show *": "allow",
+      "npm run*": "ask",
+      "npm test*": "ask",
+      "npm install*": "ask",
+      "head *": "allow",
+      "find *": "allow",
+      "rm *": "ask",
+      "rm -rf *": "deny",
+      "flutter test": "allow"
+    },
+
+    "glob": "allow",
+    "grep": "allow",
+    "webfetch": "ask",
+    "websearch": "deny",
+    "task": "allow",
+    "question": "allow",
+    "todowrite": "allow",
+
+    "external_directory": "ask",
+    "doom_loop": "ask"
+  }
+}
