@@ -1,5 +1,12 @@
 return {
     "robitx/gp.nvim",
+    keys = {
+      { "<leader>a", mode = "n", desc = "GPT prompt Toggle Chat" },
+      { "<leader>fa", mode = "n", desc = "GPT prompt Chat Finder" },
+      { "<leader>a", mode = "v", desc = "GPT prompt Visual Chat Paste" },
+      { "<leader>rt", mode = "v", desc = "GPT prompt Visual [R]ewrite [t]his" },
+      { "<leader>it", mode = "v", desc = "GPT prompt [I]mplement [t]his selection" },
+    },
     config = function()
         local function env_bool(var, default)
             local val = os.getenv(var)
@@ -82,7 +89,7 @@ return {
                 },
                 {
                     provider = "opencodego",
-                    name = "ChatKimiK2.6",
+                    name = "ChatKimiK2.6-Go",
                     chat = true,
                     command = false,
                     model = { model = "kimi-k2.6", temperature = 1.1, top_p = 1 },
@@ -90,7 +97,7 @@ return {
                 },
                 {
                     provider = "opencodego",
-                    name = "CodeKimiK2.6",
+                    name = "CodeKimiK2.6-Go",
                     chat = false,
                     command = true,
                     model = { model = "kimi-k2.6", temperature = 0.8, top_p = 1 },
@@ -98,7 +105,7 @@ return {
                 },
                 {
                     provider = "opencodego",
-                    name = "ChatDeepSeekV4Pro",
+                    name = "ChatDeepSeekV4Pro-Go",
                     chat = true,
                     command = false,
                     model = { model = "deepseek-v4-pro", temperature = 1.1, top_p = 1, reasoning_effort = "max" },
@@ -106,7 +113,7 @@ return {
                 },
                 {
                     provider = "opencodego",
-                    name = "CodeDeepSeekV4Pro",
+                    name = "CodeDeepSeekV4Pro-Go",
                     chat = false,
                     command = true,
                     model = { model = "deepseek-v4-pro", temperature = 0.8, top_p = 1, reasoning_effort = "max" },
@@ -114,7 +121,7 @@ return {
                 },
                 {
                     provider = "opencodego",
-                    name = "ChatDeepSeekV4Flash",
+                    name = "ChatDeepSeekV4Flash-Go",
                     chat = true,
                     command = false,
                     model = { model = "deepseek-v4-flash", temperature = 1.1, top_p = 1 },
@@ -122,12 +129,31 @@ return {
                 },
                 {
                     provider = "opencodego",
-                    name = "CodeDeepSeekV4Flash",
+                    name = "CodeDeepSeekV4Flash-Go",
                     chat = false,
                     command = true,
                     model = { model = "deepseek-v4-flash", temperature = 0.8, top_p = 1 },
                     system_prompt = require("gp.defaults").code_system_prompt,
                 },
+                {
+                    provider = "opencodego",
+                    name = "ChatGLM-5.2-Go",
+                    chat = true,
+                    command = false,
+                    model = { model = "glm-5.2", temperature = 1.1, top_p = 1 },
+                    system_prompt = "Keep your answers concise and to the point."
+                },
+                { name = "ChatClaude-3-7-Sonnet", disable = true },
+                { name = "ChatClaude-Sonnet-4-Thinking", disable = true },
+                { name = "CodeClaude-3-7-Sonnet", disable = true },
+                { name = "ChatClaude-3-5-Haiku", disable = true },
+                { name = "CodeClaude-3-5-Haiku", disable = true },
+                { name = "ChatGPT-4o", disable = true },
+                { name = "ChatGPT-4o-mini", disable = true },
+                { name = "ChatGPT-o1", disable = true },
+                { name = "ChatGPT-o1-mini", disable = true },
+                { name = "ChatGPT-o3-mini", disable = true },
+                { name = "ChatGPT-4.1", disable = true },
 
             },
             chat_shortcut_respond = { modes = { "n" }, shortcut = "<CR>" },

@@ -71,3 +71,11 @@ vim.cmd('highlight @string.special.url.gdscript gui=NONE guifg=#279c09')
 -- faster CursorHold (important)
 vim.o.updatetime = 300
 
+-- don't auto-insert comment leader when pressing o/O (normal mode)
+-- or Enter (insert mode); filetype plugins re-add these, so use an autocmd
+vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+  callback = function()
+    vim.opt.formatoptions:remove({ 'r', 'o' })
+  end,
+})
+

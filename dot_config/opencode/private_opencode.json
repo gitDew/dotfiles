@@ -70,6 +70,8 @@
       "npm install*": "ask",
       "head *": "allow",
       "find *": "allow",
+      "ls *": "allow",
+      "echo *": "allow",
       "rm *": "ask",
       "rm -rf *": "deny",
       "flutter test": "allow"

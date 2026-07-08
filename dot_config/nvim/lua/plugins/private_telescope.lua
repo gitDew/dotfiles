@@ -9,7 +9,6 @@ return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -80,15 +79,15 @@ return {
           },
         },
         pickers = {
-          diagnostics = {
-            initial_mode = "normal",
-            theme = "ivy",
-            layout_strategy = "horizontal",
-            layout_config = {
-              width = 0.95,
-              height = 0.9,
-            },
-          },
+          -- diagnostics = {
+          --   initial_mode = "normal",
+          --   theme = "ivy",
+          --   layout_strategy = "horizontal",
+          --   layout_config = {
+          --     width = 0.95,
+          --     height = 0.9,
+          --   },
+          -- },
           lsp_definitions = {
             initial_mode = "normal",
           },
@@ -128,19 +127,25 @@ return {
 --    vim.keymap.set('n', '<leader>fm', builtin.git_status, { desc = '[F]ind [M]odified (Git Status) Files' })
       -- make colors work in telescope diff preview
       vim.keymap.set('n', '<leader>fm', function()
-        require('telescope.builtin').git_status({
+        require('telescope.builtin').git_status(require('telescope.themes').get_dropdown({
+          layout_strategy = 'vertical',
+          layout_config = {
+            width = 0.95,
+            height = 0.95,
+            preview_height = 0.75,
+          },
           previewer = require('telescope.previewers').new_termopen_previewer({
             get_command = function(entry)
               return { 'git', '-c', 'color.diff=always', 'diff', '--', entry.value }
             end,
           }),
-        })
-      end, { desc = '[F]ind [M]odified (Git Status) Files' })
+        }))
+      end)
       -- vim.keymap.set('n', '<leader>fp', "<cmd>Telescope projects<cr>", { desc = '[F]ind in [P]project (git repo)' })
       vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
-      vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
+      -- vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })  -- replaced by trouble.nvim (see lua/plugins/trouble.lua)
       vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = '[F]ind [Old] Files' })
       -- vim.keymap.set('n', '<leader><leader>', builtin.resume, { desc = '[ ] Resume last search' })
       vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
@@ -156,7 +161,7 @@ return {
       end, { desc = '[F]ind [N]eovim files' })
 
       vim.keymap.set('n', '<leader>fh', function()
-        builtin.find_files { cwd = '/home/krisz/', hidden = true}
+        builtin.find_files { cwd = '/Users/krisz/', hidden = true}
       end, { desc = '[F]ind in [H]ome' })
 
       vim.keymap.set('n', '<leader>dc', function()
