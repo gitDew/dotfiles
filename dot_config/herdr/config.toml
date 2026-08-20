@@ -1,0 +1,56 @@
+onboarding = false
+# Herdr configuration
+# Minimal overrides: keep herdr defaults, but migrate tmux muscle memory.
+# Everything not listed here uses herdr defaults.
+
+[keys]
+# tmux: C-a prefix (herdr default is ctrl+b)
+prefix = "ctrl+a"
+
+# tmux: d = split right (side-by-side)  -> herdr split_vertical
+# (herdr default for this is prefix+v)
+split_vertical = "prefix+d"
+
+# tmux: s = split down (stacked)  -> herdr split_horizontal
+# (herdr default for this is prefix+minus; settings moved to prefix+shift+s)
+split_horizontal = "prefix+s"
+
+# tmux: settings was prefix+s in herdr defaults; moved out of the way
+settings = "prefix+shift+s"
+
+# tmux: a = last-window (quickswap)  -> herdr previous_tab
+previous_tab = "prefix+a"
+
+# vim: k/j instead of up/down arrows for workspace selection in navigate mode
+# (list UIs like the workspace picker, session navigator, and keybind help
+# already respond to j/k natively; this covers the sidebar navigate mode)
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+# Already matching your tmux binds via herdr defaults (no override needed):
+#   h/j/k/l       -> prefix+h/j/k/l pane focus
+#   w             -> prefix+w workspace picker (tmux choose-tree)
+#   1-9           -> prefix+1..9 switch tab (herdr: switch existing tab only;
+#                    create with prefix+c new_tab)
+#   [             -> prefix+[ copy mode
+#   prefix+arrows -> prefix+r enters resize mode, then arrows resize
+#   q             -> prefix+q detach
+
+[[keys.command]]
+key = "prefix+f"
+type = "plugin_action"
+command = "sessionizer.open"
+description = "open project workspace (sessionizer)"
+
+[[keys.command]]
+key = "prefix+up"
+type = "plugin_action"
+command = "sessionizer.worktree-open"
+description = "open worktree workspace (sessionizer)"
+
+[terminal]
+# tmux: default-shell /bin/zsh
+default_shell = "/bin/zsh"
+
+[ui]
+agent_panel_sort = "spaces"

@@ -1,0 +1,7 @@
+[projects]
+roots = ["~/clones"]
+git_only = true
+depth = 1
+
+[ui]
+placement = "overlay"   # overlay | split | popup (popup needs Herdr >= 0.7.4)
