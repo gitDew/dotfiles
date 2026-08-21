@@ -7,6 +7,7 @@
   "defaultThinkingLevel": "xhigh",
   "packages": [
     "git:github.com/dmmulroy/pi-web-tools",
-    "npm:@aliou/pi-guardrails"
+    "npm:@aliou/pi-guardrails",
+    "npm:@plannotator/pi-extension"
   ]
 }
