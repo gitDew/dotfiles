@@ -54,3 +54,6 @@ default_shell = "/bin/zsh"
 
 [ui]
 agent_panel_sort = "spaces"
+# When collapsing the sidebar with prefix+b (toggle_sidebar), fully hide
+# it instead of leaving a compact bar visible.
+sidebar_collapsed_mode = "hidden"

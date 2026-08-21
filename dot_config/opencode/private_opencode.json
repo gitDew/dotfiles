@@ -36,13 +36,6 @@
           "reasoning": true,
           "temperature": true
         },
-        "DeepSeek-V4-Pro": {
-          "id": "DeepSeek-V4-Pro",
-          "name": "DeepSeek-V4-Pro",
-          "tool_call": true,
-          "reasoning": true,
-          "temperature": true
-        }
       }
     }
   }

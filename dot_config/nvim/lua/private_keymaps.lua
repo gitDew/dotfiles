@@ -11,6 +11,10 @@ vim.keymap.set('n', '<leader>l', '<C-w><C-l>', { desc = 'Move focus to the right
 vim.keymap.set('n', '<leader>j', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<leader>k', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Split windows
+vim.keymap.set('n', '<leader>s', '<cmd>split<cr>', { desc = 'Horizontal split' })
+vim.keymap.set('n', '<leader>d', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
+
 -- Toggle to previous window with <leader><leader>
 vim.keymap.set('n', '<leader><leader>', '<C-w><C-p>', { desc = 'Toggle to previous window' })
 
@@ -35,24 +39,10 @@ vim.keymap.set('n', 'J', "mzJ`z")
 -- Paste without overwriting register
 vim.keymap.set('x', '<leader>p', '\"_dP')
 
--- Delete without overwriting register
-vim.keymap.set('n', '<leader>d', '\"_d')
-vim.keymap.set('n', '<leader>d', '\"_d')
-
 -- Yank to system clipboard
 vim.keymap.set('n', '<leader>y', '\"+y')
 vim.keymap.set('v', '<leader>y', '\"+y')
 vim.keymap.set('n', '<leader>Y', '\"+Y')
-
--- Substitute word under cursor in line only
-vim.keymap.set("n", "<leader>s", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- Substitute word under cursor in whole file
-vim.keymap.set("n", "S", "<Nop>")
-vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- Substitute selected in whole file
-vim.keymap.set("v", "<leader>S", [["hy:%s/<C-r>h/<C-r>h/gI<Left><Left><left>]])
 
 -- Bind Ctrl-V to Space + V to avoid confusion with pasting
 vim.keymap.set('n', '<leader>v', '<C-v>')

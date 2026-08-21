@@ -2,7 +2,11 @@
   "lastChangelogVersion": "0.84.2",
   "theme": "catppuccin-macchiato",
   "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-flash",
+  "defaultModel": "gpt-5.6-luna",
   "hideThinkingBlock": true,
-  "defaultThinkingLevel": "max"
+  "defaultThinkingLevel": "xhigh",
+  "packages": [
+    "git:github.com/dmmulroy/pi-web-tools",
+    "npm:@aliou/pi-guardrails"
+  ]
 }
