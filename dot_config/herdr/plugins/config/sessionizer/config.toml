@@ -1,6 +1,6 @@
 [projects]
 roots = ["~/clones"]
-git_only = true
+git_only = false
 depth = 1
 
 [ui]
