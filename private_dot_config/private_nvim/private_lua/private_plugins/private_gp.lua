@@ -26,20 +26,10 @@ return {
                 ollama = {},
                 lmstudio = {},
                 pplx = {},
-                anthropic = {
-                    disable = not env_bool("ANTHROPIC_API_KEY", false),
-                    endpoint = "https://lab-coding.services.ai.azure.com/anthropic/v1/messages",
-                    secret = os.getenv("ANTHROPIC_API_KEY"),
-                },
                 opencodego = {
-                    disable = not env_bool("OPENCODE_GO_API_KEY", false),
+                    disable = not env_bool("OPENCODE_API_KEY", false),
                     endpoint = "https://opencode.ai/zen/go/v1/chat/completions",
-                    secret = os.getenv("OPENCODE_GO_API_KEY"),
-                },
-                labcoding = {
-                    disable = not env_bool("LAB_CODING_API_KEY", false),
-                    endpoint = "https://lab-coding.openai.azure.com/openai/v1/chat/completions",
-                    secret = os.getenv("LAB_CODING_API_KEY"),
+                    secret = os.getenv("OPENCODE_API_KEY"),
                 },
             },
             agents = {

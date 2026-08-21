@@ -7,6 +7,9 @@
 .config/herdr/plugins/github
 .config/herdr/plugins/config/*/node_modules
 
+# Neovim plugin lockfile is machine-local
+.config/nvim/lazy-lock.json
+
 # pi agent state that must stay out of version control
 .pi/agent/auth.json
 .pi/agent/bin
