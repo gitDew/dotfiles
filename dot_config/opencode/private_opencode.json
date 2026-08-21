@@ -45,47 +45,5 @@
         }
       }
     }
-  },
-  "permission": {
-    "*": "ask",
-
-    "read": {
-      "*": "allow",
-      "*.env": "deny",
-      "*.env.*": "deny",
-      "*.env.example": "allow"
-    },
-
-    "edit": "allow",
-
-    "bash": {
-      "*": "ask",
-      "git status *": "allow",
-      "git diff *": "allow",
-      "git log *": "allow",
-      "git branch *": "allow",
-      "git show *": "allow",
-      "npm run*": "ask",
-      "npm test*": "ask",
-      "npm install*": "ask",
-      "head *": "allow",
-      "find *": "allow",
-      "ls *": "allow",
-      "echo *": "allow",
-      "rm *": "ask",
-      "rm -rf *": "deny",
-      "flutter test": "allow"
-    },
-
-    "glob": "allow",
-    "grep": "allow",
-    "webfetch": "ask",
-    "websearch": "deny",
-    "task": "allow",
-    "question": "allow",
-    "todowrite": "allow",
-
-    "external_directory": "ask",
-    "doom_loop": "ask"
   }
 }
