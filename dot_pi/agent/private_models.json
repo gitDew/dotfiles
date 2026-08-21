@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "azure-openai-responses": {
+      "name": "Azure OpenAI",
+      "api": "azure-openai-responses",
+      "baseUrl": "https://lab-coding.openai.azure.com/openai/v1",
+      "apiKey": "$AZURE_OPENAI_API_KEY",
+      "headers": {
+        "api-key": "$AZURE_OPENAI_API_KEY"
+      },
+      "models": [
+        {
+          "id": "kimi-k2.6",
+          "name": "kimi-k2.6",
+          "reasoning": false,
+          "input": ["text", "image"],
+          "cost": {
+            "input": 0.95,
+            "output": 4,
+            "cacheRead": 0.16,
+            "cacheWrite": 0
+          },
+          "contextWindow": 262144,
+          "maxTokens": 65536,
+          "compat": {
+            "supportsStore": false,
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens",
+            "supportsLongCacheRetention": false
+          }
+        },
+        {
+          "id": "gpt-5.6-luna",
+          "name": "GPT-5.6 Luna",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": {
+            "input": 0.2,
+            "output": 1.2,
+            "cacheRead": 0.02,
+            "cacheWrite": 0.25
+          },
+          "contextWindow": 1050000,
+          "maxTokens": 128000,
+          "thinkingLevelMap": {
+            "off": null,
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "compat": {
+            "supportsOpenAIGrammarTools": true
+          }
+        }
+      ]
+    }
+  }
+}
