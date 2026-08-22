@@ -48,7 +48,16 @@ return {
                             luasnip.lsp_expand(args.body)
                         end,
                     },
-                    completion = { completeopt = 'menu,menuone,noinsert' },
+                    -- Only show completion suggestions when explicitly requested.
+                    -- Use <C-Space> below to trigger completion manually.
+                    completion = {
+                        autocomplete = false,
+                        completeopt = 'menu,menuone,noinsert',
+                    },
+
+                    -- Escape hatch: uncomment the following block to restore automatic
+                    -- completion. It appears after the manual-only block so it overrides it.
+                    -- completion = { completeopt = 'menu,menuone,noinsert' },
 
                     -- For an understanding of why these mappings were
                     -- chosen, you will need to read `:help ins-completion`
@@ -76,9 +85,7 @@ return {
                         -- ['<Tab>'] = cmp.mapping.select_next_item(),
                         -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
-                        -- Manually trigger a completion from nvim-cmp.
-                        --  Generally you don't need this, because nvim-cmp will display
-                        --  completions whenever it has completion options available.
+                        -- Manually trigger completion from nvim-cmp.
                         ['<C-Space>'] = cmp.mapping.complete {},
 
                         -- Think of <c-l> as moving to the right of your snippet expansion.
