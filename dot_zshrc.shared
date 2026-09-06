@@ -1,0 +1,2 @@
+# Pi chat mode: webfetch, Plannotator, and selected global extensions.
+alias pichat='pi --tools webfetch,plannotator_submit_plan --no-context-files --no-extensions --no-skills --no-prompt-templates -e "$HOME/.pi/agent/npm/node_modules/@plannotator/pi-extension/index.ts" -e "$HOME/.pi/agent/git/github.com/dmmulroy/pi-web-tools/index.ts" -e "$HOME/.pi/agent/extensions/context-status.ts" --system-prompt "You are a general-purpose conversational assistant. This is a chat-first session. Answer the user directly."'
