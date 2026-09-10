@@ -10,6 +10,9 @@ vim.opt.showmode = false
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- Disable soft wrapping so long shell/config lines stay on one screen row.
+vim.opt.wrap = false
+
 -- Save undo history
 vim.opt.undofile = true
 
