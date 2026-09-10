@@ -9,6 +9,7 @@
 
 
 # pi agent state that must stay out of version control
+.pi/agent/settings.json
 .pi/agent/auth.json
 .pi/agent/bin
 .pi/agent/sessions
