@@ -1,2 +1,83 @@
+# Shared, portable Zsh configuration — synced across laptops.
+# Tool integrations are guarded so this no-ops gracefully on machines
+# missing a given tool.
+
+# --- Oh My Zsh --------------------------------------------------------------
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+  export ZSH="$HOME/.oh-my-zsh"
+  DISABLE_UPDATE_PROMPT=true
+
+  ZSH_THEME="robbyrussell"
+
+  # Standard plugins: $ZSH/plugins/, custom: $ZSH_CUSTOM/plugins/
+  plugins=(git)
+
+  source $ZSH/oh-my-zsh.sh
+fi
+
+# --- General settings -------------------------------------------------------
+export EDITOR='nvim'
+alias vi=nvim
+
+export LANG=en_US.UTF-8
+export DOTNET_CLI_UI_LANGUAGE=en
+
+# Personal scripts
+export PATH="$HOME/.local/scripts:$HOME/.local/bin:$PATH"
+
+# --- Aliases ----------------------------------------------------------------
+if (( ${+commands[eza]} )); then
+  alias ls='eza --all --long --header --icons=auto --group-directories-first --git'
+fi
+
+# --- Tool integrations ------------------------------------------------------
+
+# Rust (cargo)
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# .NET tools
+export PATH="$HOME/.dotnet/tools:$PATH"
+
+# Go (guarded: no `command not found: go` noise on machines without it)
+(( ${+commands[go]} )) && export PATH="$PATH:$(go env GOPATH)/bin"
+
+# Vi mode
+bindkey -v
+
+# Only changing the escape key to `jk` in insert mode, we still
+# keep using the default keybindings `^[` in other modes.
+# (must be set BEFORE sourcing zsh-vi-mode)
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+
+# Initialize zsh-vi-mode immediately while sourcing, instead of lazily at the
+# first prompt (see ordering rule at the top of this file).
+ZVM_INIT_MODE=sourcing
+
+# zsh-vi-mode installed via Homebrew — check the two standard prefixes
+# (Apple Silicon: /opt/homebrew, Intel: /usr/local) instead of shelling out
+# to `brew --prefix` at every startup.
+for _brew_prefix in /opt/homebrew /usr/local; do
+  _zvm_plugin="$_brew_prefix/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+  if [[ -f "$_zvm_plugin" ]]; then
+    source "$_zvm_plugin"
+    break
+  fi
+done
+unset _brew_prefix _zvm_plugin
+
+# Per-machine environment / secrets (the ~/.env file itself is NOT synced)
+[[ -r "$HOME/.env" ]] && source "$HOME/.env"
+
+# fzf key bindings and fuzzy completion
+if (( ${+commands[fzf]} )); then
+  source <(fzf --zsh)
+fi
+
+# --- Pi ---------------------------------------------------------------------
 # Pi chat mode: webfetch, Plannotator, and selected global extensions.
 alias pichat='pi --tools webfetch,plannotator_submit_plan --no-context-files --no-extensions --no-skills --no-prompt-templates -e "$HOME/.pi/agent/npm/node_modules/@plannotator/pi-extension/index.ts" -e "$HOME/.pi/agent/git/github.com/dmmulroy/pi-web-tools/index.ts" -e "$HOME/.pi/agent/extensions/context-status.ts" --system-prompt "You are a general-purpose conversational assistant. This is a chat-first session. Answer the user directly."'
