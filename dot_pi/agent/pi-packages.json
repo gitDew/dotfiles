@@ -1,0 +1,15 @@
+{
+  "_comment": [
+    "Managed by chezmoi. Edit the SOURCE file ~/.local/share/chezmoi/dot_pi/agent/pi-packages.json, then run 'chezmoi apply' — edits to this target copy are overwritten.",
+    "run_pi-merge-settings.sh merges this fragment into ~/.pi/agent/settings.json on every apply: keys present here are synced from chezmoi and win; keys absent here stay machine-local (defaultModel, defaultProvider, defaultThinkingLevel, lastChangelogVersion are deliberately absent).",
+    "Installing a pi package ('pi install npm:@scope/pkg') only writes to this machine's settings.json and is REVERTED by the next apply unless its source string is also added to 'packages' below.",
+    "Keys starting with '_' are documentation-only and stripped before merging."
+  ],
+  "theme": "catppuccin-macchiato",
+  "hideThinkingBlock": true,
+  "packages": [
+    "git:github.com/dmmulroy/pi-web-tools",
+    "npm:@aliou/pi-guardrails",
+    "npm:@plannotator/pi-extension"
+  ]
+}
