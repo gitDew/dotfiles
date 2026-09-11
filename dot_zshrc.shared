@@ -49,6 +49,10 @@ export PATH="$HOME/.dotnet/tools:$PATH"
 # Vi mode
 bindkey -v
 
+# Keep these settings portable and set them before loading zsh-vi-mode.
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+ZVM_VI_EDITOR='nvim'
+
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes.
 # (must be set BEFORE sourcing zsh-vi-mode)
@@ -61,14 +65,25 @@ ZVM_INIT_MODE=sourcing
 # zsh-vi-mode installed via Homebrew — check the two standard prefixes
 # (Apple Silicon: /opt/homebrew, Intel: /usr/local) instead of shelling out
 # to `brew --prefix` at every startup.
+_zvm_loaded=false
 for _brew_prefix in /opt/homebrew /usr/local; do
   _zvm_plugin="$_brew_prefix/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
   if [[ -f "$_zvm_plugin" ]]; then
     source "$_zvm_plugin"
+    _zvm_loaded=true
     break
   fi
 done
-unset _brew_prefix _zvm_plugin
+
+# Fall back to an Oh My Zsh custom plugin when Homebrew is not present.
+if [[ $_zvm_loaded == false && -n "$ZSH_CUSTOM" ]]; then
+  _zvm_plugin="$ZSH_CUSTOM/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+  if [[ -f "$_zvm_plugin" ]]; then
+    source "$_zvm_plugin"
+    _zvm_loaded=true
+  fi
+fi
+unset _brew_prefix _zvm_plugin _zvm_loaded
 
 # Per-machine environment / secrets (the ~/.env file itself is NOT synced)
 [[ -r "$HOME/.env" ]] && source "$HOME/.env"
