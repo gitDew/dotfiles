@@ -94,5 +94,11 @@ if (( ${+commands[fzf]} )); then
 fi
 
 # --- Pi ---------------------------------------------------------------------
+# pi-web-tools (dmmulroy/pi-web-tools): Exa hosted MCP endpoint backing the
+# websearch tool. Fallback only: keyed URLs live in the machine-local (unsynced)
+# ~/.env, sourced above — e.g.
+#   export PI_WEB_TOOLS_EXA_ENDPOINT="https://mcp.exa.ai/mcp?exaApiKey=..."
+[[ -n "${PI_WEB_TOOLS_EXA_ENDPOINT:-}" ]] || export PI_WEB_TOOLS_EXA_ENDPOINT="https://mcp.exa.ai/mcp"
+
 # Pi chat mode: webfetch, Plannotator, and selected global extensions.
 alias pichat='pi --tools webfetch,plannotator_submit_plan --no-context-files --no-extensions --no-skills --no-prompt-templates -e "$HOME/.pi/agent/npm/node_modules/@plannotator/pi-extension/index.ts" -e "$HOME/.pi/agent/git/github.com/dmmulroy/pi-web-tools/index.ts" -e "$HOME/.pi/agent/extensions/context-status.ts" --system-prompt "You are a general-purpose conversational assistant. This is a chat-first session. Answer the user directly."'
